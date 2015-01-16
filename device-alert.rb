@@ -1,4 +1,32 @@
+# TODO: 
+# Make it work
+# Seperate classes to make more modular
+# Add database support
+
+class DeviceAlert
+  attr_reader :agent
+  def initialize
+    @agent = Pinger.new
+  end
+
+  def cycle(devices)
+    devices.each do |device|
+      sleep 5
+      unless @agent.ping(host)
+        Mailer::new::report(device) # Mailer should maybe be a module, why am I create new ones
+        # Maybe I should initialize one the check if exists
+      end
+    end
+  end
+end
 class Pinger
+  require "net/ping"
+  def initialize
+  end
+
+  def ping(host)
+    puts Net::Ping::HTTP.new(host) # device.host
+  end
 end
 
 class Device
@@ -36,4 +64,3 @@ class Mailer
   end
 
 end
-
