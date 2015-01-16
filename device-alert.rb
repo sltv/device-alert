@@ -14,13 +14,14 @@ class DeviceAlert
       sleep 5
       unless @agent.ping(host)
         Mailer::new::report(device) # Mailer should maybe be a module, why am I create new ones
-        # Maybe I should initialize one the check if exists
+        # Maybe I should initialize one then check if exists
       end
+      cycle(devices)
     end
   end
 end
 class Pinger
-  require "net/ping"
+  require "net/ping" # change for autoload?
   def initialize
   end
 
