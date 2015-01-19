@@ -1,10 +1,9 @@
 # TODO: 
-# Make it work
 # Seperate classes to make more modular
 # Add database support
 # Add error handling
 # Fix bundler 
-# Add configuration
+# Add configuration options (OptionParser, require 'optparse')
 
 require "rubygems"
 require "bundler/setup"
@@ -47,7 +46,7 @@ class DeviceAlert
         @mailer.log_to_file(device)
         # @mailer.report(device) # Mailer should maybe be a module, why am I create new ones
         # Maybe I should initialize one then check if exists
-        "Logged."
+        puts "Logged."
       end
     end
     cycle(devices)
@@ -95,7 +94,7 @@ class Mailer < DeviceAlert
     @root_path + "/logs/#{t}" # Make configurable
   end
 
-  def alert(device) # currently broken as not the correct smtp settings
+  def alert(device) # currently broken as not the correct smtp settings?
     message = @header + report(device)
     Net::SMTP.start('webmail.sheffieldlive.org',
                     '2095',
@@ -103,7 +102,7 @@ class Mailer < DeviceAlert
                     ENV['webmail_username'],
                     ENV['webmail_password'],
                     :login) do |smtp| 
-      smtp.send_message message, "phil@sheffieldlive.org", "phil@sheffieldlive.org"
+                    smtp.send_message message, ENV['webmail_email'], ENV['webmail_email']
     end
   end
 end
