@@ -91,7 +91,7 @@ class Mailer < DeviceAlert
 
   def logfile
     t = Time.now.strftime('%Y%m%d-device-alert.log')
-    @root_path + "/log/#{t}" # Make configurable
+    @root_path + "/logs/#{t}" # Make configurable
   end
 
   def alert(device) # currently broken as not the correct smtp settings?
