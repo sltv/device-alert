@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @device.host %>
+</p>
+
+<p>
+  <strong>Port:</strong>
+  <%= @device.port %>
+</p>
+
+<p>
+  <strong>Last seen:</strong>
+  <%= @device.last_seen %>
+</p>
+
+<%= link_to 'Edit', edit_device_path(@device) %> |
+<%= link_to 'Back', devices_path %>

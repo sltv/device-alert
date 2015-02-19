@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  root 'devices#index'
+  resources :devices
+
+  get 'static/support'
+
+  match "home", :to => "static#home", via: :get
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
